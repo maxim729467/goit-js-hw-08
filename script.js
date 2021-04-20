@@ -16,13 +16,9 @@ window.addEventListener('keydown', onModalPrevImgPush);
 window.addEventListener('keydown', onModalNextImgPush);
 
 function createImagesMarkup(images) {
-    const arrWithMarkup = images.map((image, i) => {
-    const galleryItem = document.createElement("li");
-     
-        galleryItem.classList.add('gallery_item');
-        galleryItem.insertAdjacentHTML('afterbegin',
-            ` <a
-    class="gallery__link"
+    const imagesMarkup = images.map((image, i) => {
+        return `<li class="gallery_item">
+    <a class="gallery__link"
     href="${image.original}"
   >
     <img
@@ -32,13 +28,11 @@ function createImagesMarkup(images) {
       data-number = ${i}
       alt="${image.description}"
     />
-  </a>`);
-        
-        return galleryItem;
-        
-    });
+  </a>
+  </li>`;
+    }).join('');
     
-    return galleryList.append(...arrWithMarkup);
+    galleryList.insertAdjacentHTML('afterbegin', imagesMarkup);
 }
 
 function onImageClick(evt) {
