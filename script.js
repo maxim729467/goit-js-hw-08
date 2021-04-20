@@ -83,7 +83,7 @@ function onModalPrevImgPush(evt) {
     const index = zoomedImage.dataset.number;
     const prevImg = document.querySelector(`img[data-number='${index - 1}']`);
 
-   if (evt.code !== 'ArrowLeft') {
+   if (evt.code !== 'ArrowLeft' || prevImg === null) {
         return;
     }
  
@@ -99,13 +99,11 @@ function onModalNextImgPush(evt) {
     const index = zoomedImage.dataset.number;
     const nextImg = document.querySelector(`img[data-number='${Number(index) + 1}']`);
 
-   if (evt.code !== 'ArrowRight') {
+   if (evt.code !== 'ArrowRight' || nextImg === null) {
         return;
     }
 
     zoomedImage.src = nextImg.dataset.source;
     zoomedImage.alt = nextImg.dataset.source;
     zoomedImage.dataset.number = nextImg.dataset.number;
-
-
 }
