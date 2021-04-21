@@ -11,9 +11,7 @@ const { body, galleryList, modalWindow, zoomedImage } = refs;
 createImagesMarkup(images);
 galleryList.addEventListener('click', onImageClick);
 modalWindow.addEventListener('click', onModalCloseClick);
-body.addEventListener('keydown', onModalClosePush);
-body.addEventListener('keydown', onModalPrevImgPush);
-body.addEventListener('keydown', onModalNextImgPush);
+
 
 function createImagesMarkup(images) {
     const imagesMarkup = images.map((image, i) => {
@@ -46,6 +44,10 @@ function onImageClick(evt) {
     zoomedImage.src = evt.target.dataset.source;
     zoomedImage.alt = evt.target.dataset.source;
     zoomedImage.dataset.number = evt.target.dataset.number;
+
+window.addEventListener('keydown', onModalClosePush);
+window.addEventListener('keydown', onModalPrevImgPush);
+window.addEventListener('keydown', onModalNextImgPush);
     
 }
 
@@ -60,6 +62,10 @@ if (!evt.target.classList.contains('lightbox__button')
     body.classList.toggle('is-fixed');
     zoomedImage.alt = '';
     zoomedImage.src = '';
+
+window.removeEventListener('keydown', onModalClosePush);
+window.removeEventListener('keydown', onModalPrevImgPush);
+window.removeEventListener('keydown', onModalNextImgPush);
 }
 
 function onModalClosePush (evt) {
@@ -71,6 +77,10 @@ if (evt.code !== 'Escape') {
     body.classList.remove('is-fixed');
     zoomedImage.alt = '';
     zoomedImage.src = '';
+
+window.removeEventListener('keydown', onModalClosePush);
+window.removeEventListener('keydown', onModalPrevImgPush);
+window.removeEventListener('keydown', onModalNextImgPush);
 }
 
 function onModalPrevImgPush(evt) {
