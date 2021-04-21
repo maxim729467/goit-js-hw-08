@@ -11,9 +11,9 @@ const { body, galleryList, modalWindow, zoomedImage } = refs;
 createImagesMarkup(images);
 galleryList.addEventListener('click', onImageClick);
 modalWindow.addEventListener('click', onModalCloseClick);
-window.addEventListener('keydown', onModalClosePush);
-window.addEventListener('keydown', onModalPrevImgPush);
-window.addEventListener('keydown', onModalNextImgPush);
+body.addEventListener('keydown', onModalClosePush);
+body.addEventListener('keydown', onModalPrevImgPush);
+body.addEventListener('keydown', onModalNextImgPush);
 
 function createImagesMarkup(images) {
     const imagesMarkup = images.map((image, i) => {
