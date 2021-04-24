@@ -57,30 +57,16 @@ if (!evt.target.classList.contains('lightbox__button')
         !evt.target.classList.contains('lightbox__overlay')) {
         return;
     }
-    
-    modalWindow.classList.toggle('is-open');
-    body.classList.toggle('is-fixed');
-    zoomedImage.alt = '';
-    zoomedImage.src = '';
-
-window.removeEventListener('keydown', onModalClosePush);
-window.removeEventListener('keydown', onModalPrevImgPush);
-window.removeEventListener('keydown', onModalNextImgPush);
+   
+    closeModal();
 }
 
 function onModalClosePush (evt) {
 if (evt.code !== 'Escape') {
         return;
     }
-    
-    modalWindow.classList.remove('is-open');
-    body.classList.remove('is-fixed');
-    zoomedImage.alt = '';
-    zoomedImage.src = '';
 
-window.removeEventListener('keydown', onModalClosePush);
-window.removeEventListener('keydown', onModalPrevImgPush);
-window.removeEventListener('keydown', onModalNextImgPush);
+    closeModal();
 }
 
 function onModalPrevImgPush(evt) {
@@ -110,4 +96,15 @@ function onModalNextImgPush(evt) {
     zoomedImage.src = nextImg.dataset.source;
     zoomedImage.alt = nextImg.dataset.source;
     zoomedImage.dataset.number = nextImg.dataset.number;
+}
+
+function closeModal() {
+    modalWindow.classList.toggle('is-open');
+    body.classList.toggle('is-fixed');
+    zoomedImage.alt = '';
+    zoomedImage.src = '';
+
+window.removeEventListener('keydown', onModalClosePush);
+window.removeEventListener('keydown', onModalPrevImgPush);
+window.removeEventListener('keydown', onModalNextImgPush);
 }
